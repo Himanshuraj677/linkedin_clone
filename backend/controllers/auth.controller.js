@@ -80,8 +80,8 @@ export const login = async (req, res) => {
 		await res.cookie("jwt-linkedin", token, {
 			httpOnly: true,
 			maxAge: 3 * 24 * 60 * 60 * 1000,
-			sameSite: "strict",
-			secure: process.env.NODE_ENV === "production",
+			sameSite: 'None', // Allow cross-site cookies (if you're using a frontend from a different origin)
+  			secure: true, // Only for https
 		});
 
 		res.json({ message: "Logged in successfully" });
