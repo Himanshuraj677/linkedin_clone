@@ -39,12 +39,11 @@ export const signup = async (req, res) => {
 		const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "3d" });
 
 		res.cookie("jwt-linkedin", token, {
-			httpOnly: true, // prevent XSS attack
-			maxAge: 3 * 24 * 60 * 60 * 1000,
-			sameSite: "strict", // prevent CSRF attacks,
-			secure: process.env.NODE_ENV === "production", // prevents man-in-the-middle attacks
-		});
-
+			httpOnly: true,  // Prevent XSS attacks
+			maxAge: 3 * 24 * 60 * 60 * 1000,  // Cookie expiry time
+			sameSite: "none",  // Allow cross-site requests
+			secure: true,  // Only use HTTPS
+		  });
 		res.status(201).json({ message: "User registered successfully" });
 
 		const profileUrl = process.env.CLIENT_URL + "/profile/" + user.username;
