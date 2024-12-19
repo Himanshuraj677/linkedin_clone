@@ -21,7 +21,7 @@ const __dirname = path.resolve();
 if (process.env.NODE_ENV !== "production") {
 	app.use(
 		cors({
-			origin: "http://localhost:5173",
+			origin: "https://linked-in-clone-044.netlify.app",
 			credentials: true,
 		})
 	);
